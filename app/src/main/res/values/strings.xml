@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Reddit feed</string>
+
+    <string name="author">Author</string>
+    <string name="comment">Comments</string>
+    <string name="sorry_message">Sorry no description to display , try another one.</string>
+    <string name="please_try_again">Something wrong please try again.</string>
+</resources>
