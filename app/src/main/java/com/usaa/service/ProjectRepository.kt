@@ -22,6 +22,7 @@ object ProjectRepository {
         dataApiService = retrofit.create(ApiService::class.java)
     }
 
+    //loading data from server and attaching that data to live data observer
     fun loadData(): MutableLiveData<RedditModel> {
         val liveData = MutableLiveData<RedditModel>()
         dataApiService.redditData.enqueue(object : Callback<RedditModel> {

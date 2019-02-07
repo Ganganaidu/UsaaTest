@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //dialog to display self text
     fun showDialog(childData: ChildData?) {
         val newFragment = RedditDialogFragment.newInstance(childData?.selftext)
         newFragment.show(supportFragmentManager, "dialog")

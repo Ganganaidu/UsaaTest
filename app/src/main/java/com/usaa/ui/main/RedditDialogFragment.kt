@@ -12,7 +12,8 @@ class RedditDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         var message = arguments?.getString("message")
-        
+
+        //if no message trying to display some warning message to let user know about the data state
         if (message == null || message.isEmpty()) {
             message = getString(R.string.sorry_message)
         }
