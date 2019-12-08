@@ -41,13 +41,18 @@ class MainFragment : Fragment(), OnItemClickListener {
         recycleView.layoutManager = LinearLayoutManager(activity)
         progressBar.visibility = View.VISIBLE
 
-        productAdapter = ProductAdapter(activity!!, this)
-        recycleView.adapter = productAdapter
+        activity?.let {
+            productAdapter = ProductAdapter(it, this)
+            recycleView.adapter = productAdapter
+        }
 
-        viewModel.liveDataObserver.observe(this, Observer { redditModel ->
+        viewModel.loadData()
+
+        viewModel.liveData.observe(this, Observer { redditModel ->
             progressBar.visibility = View.GONE
             if (redditModel == null) {
-                Toast.makeText(activity, getString(R.string.please_try_again), Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, getString(R.string.please_try_again), Toast.LENGTH_SHORT)
+                    .show();
             } else {
                 productAdapter?.updateAdapter(redditModel.mainData?.children)
             }

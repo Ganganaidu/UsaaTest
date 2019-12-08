@@ -14,7 +14,8 @@ class ProductAdapter(private val context: Context, private val listener: OnItemC
     private var childDataList: List<Child>? = null
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): ProdcutHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_list_view, viewGroup, false)
+        val view = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.item_list_view, viewGroup, false)
         return ProdcutHolder(view)
     }
 
@@ -28,10 +29,14 @@ class ProductAdapter(private val context: Context, private val listener: OnItemC
         productHolder.titleView.text = childData?.title
 
         productHolder.authorView.text =
-                String.format("%s : %s ", context.getString(R.string.author), childData?.authorFullname)
+            String.format("%s : %s ", context.getString(R.string.author), childData?.authorFullname)
 
         productHolder.commentsView.text = if (childData?.commentCount!! > 0)
-            String.format("%s : %s ", context.getString(R.string.comment), childData.commentCount) else ""
+            String.format(
+                "%s : %s ",
+                context.getString(R.string.comment),
+                childData.commentCount
+            ) else ""
 
         productHolder.itemView.setOnClickListener { listener.onItemClick(childData) }
     }
